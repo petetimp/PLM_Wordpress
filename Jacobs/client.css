@@ -1,0 +1,598 @@
+/*General Styles*/
+
+#Jacobs .dark-heading{
+	color:#333;
+	margin-top:0;
+}
+
+#Jacobs h1.vc_custom_heading, .inner-practice-area .blog-post > h1:first-child {
+    font-size: 48px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+#banner-h1 h1 {
+    padding: 0 15px;
+}
+
+#Jacobs .body-content h4 {
+    font-weight: bold;
+    margin: 25px 0 10px;
+}
+
+#Jacobs p {
+    text-align: justify;
+}
+
+#Jacobs .content-altered{
+	max-width:1170px;
+	margin:0 auto;
+}
+
+.row > #banner-img{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#banner-img .vc_column-inner {
+    padding: 0;
+}
+
+#banner-img img {
+    border-bottom: 4px solid #ffc909;
+}
+
+#Jacobs .body-content li{
+    color:#ffc907;
+    list-style-type:disc;
+	font-size:16px;
+	margin-bottom: 10px;
+}
+
+
+#Jacobs ul.col-sm-6.no-float {
+    display: inline-block;
+    width: 48%;
+    vertical-align: text-top;
+    padding: 0 15px;
+	margin:20px 5px;
+}
+
+#Jacobs ul.col-sm-6.no-float.red-bullets li {
+	color:#af272d;
+}
+
+@media(max-width:991px){
+     #Jacobs ul.col-sm-6.no-float {
+        margin:0 5px;
+     }
+}
+
+.gform_container .body-content{
+    width:375px;
+    margin:0 auto;
+}
+
+#Jacobs .gray-background {
+    background-color: #f2f2f2;
+    padding: 60px 15px;
+}
+
+@media(max-width:767px){
+	#Jacobs h1.vc_custom_heading, .inner-practice-area .blog-post > h1:first-child {
+		font-size: 36px;
+	}
+}
+
+@media(max-width:479px){
+	#Jacobs h1.vc_custom_heading, .inner-practice-area .blog-post > h1:first-child {
+		font-size: 24px;
+	}
+}
+
+@media(max-width:991px){
+	#Jacobs ul.col-sm-6.no-float {
+		width: 100%;
+		vertical-align: text-top;
+	}
+
+	#Jacobs ul.col-sm-6.no-float:nth-of-type(2) {
+		margin-top:0;
+	}
+}
+
+/*Header*/
+
+#Jacobs .blog-masthead #searchform {
+    display: none;
+}
+
+#Jacobs .header-phone-number{
+	float:right;
+	margin-right: 10px;
+}
+
+#Jacobs .header-phone-number, #Jacobs .header-phone-number a {
+    color: #333333;
+    font-size: 32px;
+}
+
+.header-social {
+    float: right;
+    margin-top:8px;
+}
+
+.header-social a {
+    margin-right:5px;
+}
+
+.header-social img {
+    max-width: 32px;
+}
+
+#Jacobs .menu-menu-1-container ul#menu-menu-1.blog-nav{
+	margin-top:3%;
+	clear:right;
+}
+
+#Jacobs .blog-masthead .blog-header a img {
+    padding: 25px 0 15px;
+}
+
+#Jacobs .menu-menu-1-container .menu-item.page-item{
+	padding-bottom:1%;
+}
+
+@media(max-width:1199px){
+	#Jacobs .menu-menu-1-container ul#menu-menu-1 > .current_page_item > a, #Jacobs .menu-menu-1-container ul#menu-menu-1 > li > a:hover{
+		border-bottom:none;
+		color:#af272d;
+	}
+	
+	#Jacobs .menu-menu-1-container ul#menu-menu-1.blog-nav{
+		clear:both;
+		padding-top:1%;
+	}
+	
+	section.header-phone-number {
+		margin-top: 5px;
+	}
+	
+	#Jacobs .header-phone-number, #Jacobs .header-phone-number a {
+		font-size: 24px;
+	}
+	
+	section.header-social img {
+		width: 24px;
+	}
+}
+
+@media(max-width:767px){
+    section.header-phone-number,section.header-social {
+        float:none;
+        text-align:center;
+    }
+    
+    #Jacobs .blog-masthead .mobile-menu.button {
+        left: -3px;    
+    }
+
+    #Jacobs .header-phone-number, #Jacobs .header-phone-number a {
+        font-size: 18px;
+        margin: 10px 0 5px;
+        width: 100%;
+    }
+	
+	#Jacobs .menu-menu-1-container ul#menu-menu-1 .current_page_item > a, #Jacobs .menu-menu-1-container ul#menu-menu-1 a:hover{
+		color:#ffca0b;
+	}
+        
+}
+
+/*Footer*/
+
+#Jacobs .copyright {
+    padding: 0;
+}
+	
+	/*Footer Badges*/
+	
+section.footer-badges {
+    padding-top: 20px;
+}
+
+section.footer-badges .col-sm-2 {
+	text-align: center;
+}
+
+section.footer-badges .col-sm-2.last {
+    display:none;
+}
+
+section.footer-badges img {
+    width: 200px;
+    max-width: 100%;
+}
+
+section.footer-badges .col-sm-2 {
+    text-align:center;
+	margin-bottom:20px;
+}    
+
+@media(min-width:768px){
+    section.footer-badges .col-sm-2 {
+        width:20%;
+    }
+}
+
+	/*Main Footer*/
+	
+footer#footer{
+	background-image:url(/files/2017/08/footer-bg.png);
+	min-height:315px;
+	text-align:center;
+	padding-top:60px;
+	background-size:cover;
+}
+
+span.office {
+    font-size: 19px;
+    display: block;
+}
+
+#Jacobs footer span.phone, #Jacobs footer span.phone a {
+    color: #27397f;
+    font-size: 24px;
+}
+
+ul#footer-links li {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 0 10px;
+}
+
+ul#footer-links li a{
+    color:#27397f;
+    text-transform:uppercase;
+	font-size:14px;
+}
+
+ul#footer-links li a:hover{
+    color: #af272d;
+}
+
+.loc-content {
+    font-size: 18px;
+}
+
+#footer-copyright,#consultation-disclaimer{
+	text-align:center;
+	padding: 0 15px 10px;
+}
+
+#consultation-disclaimer{
+	display:none;
+}
+
+.single #consultation-disclaimer, .page-template-blog-news #consultation-disclaimer{
+	display:block;	
+}
+
+/*Gravity Form*/
+
+div#gform_wrapper_1 {
+    width: 330px;
+    max-width: 100%;
+	margin:0 auto 40px;
+}
+
+#Jacobs span.gform_description {
+    width: 100%;
+}
+
+form#gform_1 {
+    padding: 0 15px 5px;
+	background-color: #27397f;
+	position: relative;
+    z-index: 2;
+}
+
+#Jacobs span.gfield_required {
+    display: none;
+}
+
+#Jacobs .gform_wrapper ul li.gfield {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+#Jacobs .gform_wrapper .top_label input.medium, #Jacobs .gform_wrapper .top_label select.medium {
+    width: 100%;
+}
+
+#Jacobs .gform_wrapper .top_label div.ginput_container {
+    margin-top: 0;
+}
+
+.disclaimer-text, .gform_description {
+    color: white;
+	
+}
+
+.gform_description{
+	text-align:center;
+	padding-top: 10px;
+    font-size: 16px;
+}
+
+#Jacobs .gform_description, #Jacobs .gform_heading{
+	margin-bottom: 0;
+}
+
+#Jacobs input[type='submit']#gform_submit_button_1 {
+    background: none;
+    border: 1px solid white;
+    text-transform: uppercase;
+    padding: 2px 10px;
+    background-color: #ffc907;
+    color: #af272d;
+    font-weight: bold;
+    border-radius: 10px;
+    font-size: 20px;
+    box-shadow: 4px 4px 15px #333;
+	line-height:inherit;
+}
+
+#Jacobs h3.gravity-title {
+    background-color: #ffc907;
+    text-align: center;
+    width: 330px;
+	max-width:100%;
+    padding: 6px;
+    font-size: 24px;
+    margin: 40px auto 0;
+    color: #af272d;
+	font-weight:bold;
+}
+
+#Jacobs #gform_1 textarea, #Jacobs #gform_1 input {
+    background-color: #f8f8f8;    
+	border-radius: 3px;
+	height: 32px;
+}
+
+#Jacobs .g-recaptcha > div {
+    max-height: 72px;
+}
+
+#Jacobs .gform_footer.top_label {
+    text-align: center;
+    margin: 0;
+}
+
+textarea#input_1_6 {
+    min-height: 65px;
+}
+
+#field_1_7 span.smaller {
+    font-size: 11px;
+    width: 70%;
+    float: right;
+    margin-top: -20px;
+    margin-bottom: 8px;
+}
+
+#Jacobs .gform_wrapper .top_label .gfield_label {
+    margin-bottom: 10px;
+	display:block;
+}
+
+#Jacobs .gform_wrapper ul.gform_fields li.gfield {
+    padding-right: 0;
+}
+
+.gform_container .wpb_content_element {
+    margin-bottom: 0;
+}
+
+@media(max-width:1159px){
+    #Jacobs .gform_container, #Jacobs .intro-paragraph, #Jacobs .body-content {
+        width: 100%;
+    }
+    
+}
+
+@media(max-width:479px){
+	iframe[title='recaptcha widget'] {
+		max-width: 230px;
+		border-radius: 7px;
+	}
+}
+
+/*Blog/News Pages*/
+
+#Jacobs.archive .body-content li, #Jacobs.single .body-content li {
+    color: #333;
+}
+
+@media(max-width:1499px){
+	#Jacobs.archive .body-content li, #Jacobs.single .body-content li {
+		margin-left:20px;
+	}
+	
+}
+
+#blog-sidebar .widget-1, #blog-sidebar .widget-2 {
+    background-color: #f1f1f1;
+    text-align: left;
+    padding: 15px;
+    width: 330px;
+    max-width:100%;
+    margin: 0 auto;
+}
+
+#blog-sidebar .widget-1{
+    padding-bottom:0;
+}
+
+#blog-sidebar .widget-2{
+    padding-bottom:20px
+}
+
+#blog-sidebar .widget-1 select , #blog-sidebar .widget-2 select {
+    border-radius:5px;
+    border-color:#333;
+    height:30px;
+}
+
+#Jacobs .widget-1 h4, #Jacobs .widget-2 h4 {
+    text-transform:uppercase;
+    color:#af272d;
+    font-weight:bold;
+}
+
+.page-template-blog-news .snippet {
+    font-weight: bold;
+    margin-top:20px;
+}
+
+.page-template-blog-news .dummy-post:first-child .snippet{
+    margin-top:0;
+}
+
+#Jacobs.page-template-blog-news  .dummy-post {
+    border-bottom:1px solid #af272d;
+}
+
+.page-template-blog-news #dummy-blog-container, .page-template-blog-news #dummy-blog-container .col-md-12 {
+    margin-top: 0px;
+    padding-left:0;
+}
+
+#Jacobs.page-template-blog-news  a.full-post {
+    display:block;
+    color:white;
+    background-color:#af272d;
+    width:100px;
+    text-align:center;
+    margin-top:20px;
+    padding:7px;
+    font-size:15px
+}
+
+div#banner-h1 h1 {
+    font-weight: bold;
+    font-size: 48px;
+}
+
+@media(max-width:1159px){
+	div#blog-sidebar {
+    	float: none;
+    	margin: 0 auto;
+    	clear: both;
+	}
+}
+
+/*Attorney Bio Page Css*/
+
+#Jacobs strong.attorney-title {
+    color: white;
+    font-style: normal;
+    font-weight: 600;
+    text-shadow: 2px 2px 2px black;
+    display: block;
+    padding-left: 20px;
+}
+
+.attorney-info {
+    background-color: rgba(0,0,0,.4);
+    width: 300px;
+    margin-top:140px;
+}
+
+#Jacobs h1.attorney-name {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 2px 2px 2px black;
+    padding: 20px 20px 0;
+}
+
+.attorney#banner-img {
+    background-image: url(/files/2017/08/banner-image.png);
+    min-height: 487px;
+    border-bottom: 4px solid #ffc909;
+}
+
+#Jacobs #banner-img .person {
+    float: right;
+    margin-top: 100px;
+    border-bottom: none;
+}
+
+#Jacobs .attorney#banner-img img{
+    border-bottom:0;
+}
+
+#Jacobs .attorney#banner-img .vc_single_image-wrapper img{
+	max-width: 336px;
+    border: 4px solid white;
+}
+
+#Jacobs #banner-img ul.contact-info img {
+    width: 40px;
+    height: auto;
+    margin: 0 20px 20px 20px;
+}
+
+#attorney-bio div#gform_wrapper_1{
+    width: 330px;
+    max-width: 100%;
+    margin: 0 auto -200px;
+}
+
+#contact-us .vc_col-sm-4 {
+    margin: 0 auto -300px;
+}
+
+@media(max-width:1159px){
+   #Jacobs #banner-img .person {
+        float:none;
+        margin: 30px auto 0;
+        text-align:center;
+        position:relative;
+        z-index:3;
+   }
+	
+   .page-template-pa-inner-page .col-xs-4 {
+    	float: none;
+    	clear: both;
+    	margin: 0 auto;
+	    width:100%;
+	}
+
+   #banner-img .vc_col-sm-4, #banner-img .vc_col-sm-8 {
+        width: 100%;
+   }
+
+   .attorney-info {
+        margin: 0 auto 20px;
+    }
+
+    #Jacobs h1.attorney-name{
+        margin-top:-5px;
+    }
+	
+	#attorney-bio div#gform_wrapper_1{
+		margin-bottom:40px;
+	}
+	
+	#contact-us .vc_col-sm-4 {
+		margin: 0;
+	}
+}
+
+/*Inner Practice Area Pages*/
+
+
+

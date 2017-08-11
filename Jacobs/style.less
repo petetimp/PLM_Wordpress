@@ -1,0 +1,671 @@
+/*
+Theme Name: Jacobs
+Theme URI: https://www.premierlegalmarketing.com
+Author: Pete Timpone
+Author URI: http://premierlegalmarketing.com
+Description: Jacobs Theme
+Version: 1.0
+Text Domain: Jacobs
+*/
+
+@font-face {
+	font-family: 'Titillium Web';
+	src: url('fonts/TitilliumWeb-Regular.eot');
+	src: url('fonts/TitilliumWeb-Regular.eot?#iefix') format('embedded-opentype'),
+		url('fonts/TitilliumWeb-Regular.woff') format('woff'),
+		url('fonts/TitilliumWeb-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Titillium Web';
+	src: url('fonts/TitilliumWeb-BoldItalic.eot');
+	src: url('fonts/TitilliumWeb-BoldItalic.eot?#iefix') format('embedded-opentype'),
+		url('fonts/TitilliumWeb-BoldItalic.woff') format('woff'),
+		url('fonts/TitilliumWeb-BoldItalic.ttf') format('truetype');
+	font-weight: bold;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Titillium Web';
+	src: url('fonts/TitilliumWeb-Bold.eot');
+	src: url('fonts/TitilliumWeb-Bold.eot?#iefix') format('embedded-opentype'),
+		url('fonts/TitilliumWeb-Bold.woff') format('woff'),
+		url('fonts/TitilliumWeb-Bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Titillium Web';
+	src: url('fonts/TitilliumWeb-Light.eot');
+	src: url('fonts/TitilliumWeb-Light.eot?#iefix') format('embedded-opentype'),
+		url('fonts/TitilliumWeb-Light.woff') format('woff'),
+		url('fonts/TitilliumWeb-Light.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Titillium Web';
+	src: url('fonts/TitilliumWeb-SemiBold.eot');
+	src: url('fonts/TitilliumWeb-SemiBold.eot?#iefix') format('embedded-opentype'),
+		url('fonts/TitilliumWeb-SemiBold.woff') format('woff'),
+		url('fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Open Sans';
+	src: url('fonts/OpenSans-SemiboldItalic.eot');
+	src: url('fonts/OpenSans-SemiboldItalic.eot?#iefix') format('embedded-opentype'),
+		url('fonts/OpenSans-SemiboldItalic.woff') format('woff'),
+		url('fonts/OpenSans-SemiboldItalic.ttf') format('truetype');
+	font-weight: 600;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Open Sans';
+	src: url('fonts/OpenSans-Semibold.eot');
+	src: url('fonts/OpenSans-Semibold.eot?#iefix') format('embedded-opentype'),
+		url('fonts/OpenSans-Semibold.woff') format('woff'),
+		url('fonts/OpenSans-Semibold.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Open Sans';
+	src: url('fonts/OpenSans-Light.eot');
+	src: url('fonts/OpenSans-Light.eot?#iefix') format('embedded-opentype'),
+		url('fonts/OpenSans-Light.woff') format('woff'),
+		url('fonts/OpenSans-Light.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Open Sans';
+	src: url('fonts/OpenSans-BoldItalic.eot');
+	src: url('fonts/OpenSans-BoldItalic.eot?#iefix') format('embedded-opentype'),
+		url('fonts/OpenSans-BoldItalic.woff') format('woff'),
+		url('fonts/OpenSans-BoldItalic.ttf') format('truetype');
+	font-weight: bold;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Open Sans';
+	src: url('fonts/OpenSansLight-Italic.eot');
+	src: url('fonts/OpenSansLight-Italic.eot?#iefix') format('embedded-opentype'),
+		url('fonts/OpenSansLight-Italic.woff') format('woff'),
+		url('fonts/OpenSansLight-Italic.ttf') format('truetype');
+	font-weight: 300;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Open Sans';
+	src: url('fonts/OpenSans-ExtraboldItalic.eot');
+	src: url('fonts/OpenSans-ExtraboldItalic.eot?#iefix') format('embedded-opentype'),
+		url('fonts/OpenSans-ExtraboldItalic.woff') format('woff'),
+		url('fonts/OpenSans-ExtraboldItalic.ttf') format('truetype');
+	font-weight: 800;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Open Sans';
+	src: url('fonts/OpenSans-Bold.eot');
+	src: url('fonts/OpenSans-Bold.eot?#iefix') format('embedded-opentype'),
+		url('fonts/OpenSans-Bold.woff') format('woff'),
+		url('fonts/OpenSans-Bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Open Sans';
+	src: url('fonts/OpenSans-Italic.eot');
+	src: url('fonts/OpenSans-Italic.eot?#iefix') format('embedded-opentype'),
+		url('fonts/OpenSans-Italic.woff') format('woff'),
+		url('fonts/OpenSans-Italic.ttf') format('truetype');
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Open Sans';
+	src: url('fonts/OpenSans-Extrabold.eot');
+	src: url('fonts/OpenSans-Extrabold.eot?#iefix') format('embedded-opentype'),
+		url('fonts/OpenSans-Extrabold.woff') format('woff'),
+		url('fonts/OpenSans-Extrabold.ttf') format('truetype');
+	font-weight: 800;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Open Sans';
+	src: url('fonts/OpenSans.eot');
+	src: url('fonts/OpenSans.eot?#iefix') format('embedded-opentype'),
+		url('fonts/OpenSans.woff') format('woff'),
+		url('fonts/OpenSans.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* =WordPress Core
+-------------------------------------------------------------- */
+.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.aligncenter,
+div.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+.alignright {
+    float:right;
+    margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+a img.alignright {
+    float: right;
+    margin: 5px 0 20px 20px;
+}
+
+a img.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+a img.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+a img.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wp-caption {
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    max-width: 96%; /* Image does not overflow the content area */
+    padding: 5px 3px 10px;
+    text-align: center;
+}
+
+.wp-caption.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignleft {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignright {
+    margin: 5px 0 20px 20px;
+}
+
+.wp-caption img {
+    border: 0 none;
+    height: auto;
+    margin: 0;
+    max-width: 98.5%;
+    padding: 0;
+    width: auto;
+}
+
+.wp-caption p.wp-caption-text {
+    font-size: 11px;
+    line-height: 17px;
+    margin: 0;
+    padding: 0 4px 5px;
+}
+
+/* Text meant only for screen readers. */
+.screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute !important;
+        white-space: nowrap;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+}
+
+.screen-reader-text:focus {
+	background-color: #f1f1f1;
+	border-radius: 3px;
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	clip: auto !important;
+	color: #21759b;
+	display: block;
+	font-size: 14px;
+	font-size: 0.875rem;
+	font-weight: bold;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000; /* Above WP toolbar. */
+}
+
+
+@theme-color: #ffc909;
+@theme-color2: #27397f;
+@theme-color3: #af272d;
+@theme-color4: #ffffff;
+@theme-color5: #e6e6e6;
+@menu-font-color: #27397f;
+@font-color: #333333;
+@font-family1: Open Sans;
+@font-family2: Open Sans;
+@box-shadow-color: #000000;
+@menu-font-size:18px;
+@menu-font-size-sm:16px;
+
+#Jacobs{
+	font-family:@font-family1;
+	color:@font-color;
+	overflow-x: hidden;
+	
+	a{
+		color:@theme-color3;
+		
+		&:hover{
+			color:@theme-color;
+			text-decoration:none;
+		}
+	}
+	
+	li {
+		list-style-type: none;
+	}
+	
+	ul{
+		padding:0;
+	}
+	
+	strong{
+		color:@theme-color3;
+	}
+	
+	p {
+		font-size: 16px;
+		line-height: 1.8;
+		margin-bottom: 15px;
+	}
+	
+	.content{
+		max-width:1170px;
+		margin:0 auto;
+		left:0!important;
+		
+		@media(min-width:1600px){
+			max-width:1500px;
+		}
+		
+		@media(max-width:1159px){
+			max-width:970px;
+		}
+	}
+	
+	.no-float{
+		float:none!important;
+	}
+	
+	/*Headings*/
+	h1,h2,h3,h4,h5,h6{
+		color:@theme-color2;
+	}
+
+	/*Header*/
+	.blog-masthead {
+		background-color: @theme-color4;
+		border-bottom: 4px solid @theme-color;
+		/*box-shadow: 0px 30px 250px @box-shadow-color;*/
+		width: 100%;
+		z-index: 3;
+		padding:0 10px;
+		position:relative;
+		
+		@media(min-width:992px){
+			/*position: absolute;*/
+		}
+		
+		.blog-header{
+			@media(max-width:767px){
+				text-align:center;
+			}
+			
+			img{
+				max-width:100%;
+				padding: 15px 0;
+			}
+		}
+		
+		/*Search Form*/
+
+		form.searchform {
+			position: absolute;
+			left: 0;
+		}
+
+		.searchform{
+			display:inline-block;
+		}
+
+		#searchsubmit {
+			background-color: transparent;
+			background-image: url(/files/2017/07/search-image.png);
+			background-position: 5px center;
+			background-repeat: no-repeat;
+			background-size: 24px 24px;
+			border: none;
+			cursor: pointer;
+			height: 37px;
+			color:#333;
+			margin: 3px 0;
+			padding: 0 0 0 34px;
+			position: relative;
+			-webkit-transition: width 400ms ease, background 400ms ease;
+			transition:         width 400ms ease, background 400ms ease;
+			width: 0;
+			font-weight:normal;
+			font-size:15px;
+			font-family: 'Titillium Web', sans-serif;
+			z-index:3000;
+		}
+
+		#s:focus {
+			background-color: #fff;
+			border: 2px solid #c3c0ab;
+			cursor: text;
+			outline: 0;
+			width: 200px;
+		}
+
+		#s { 
+			visibility:hidden;
+		}
+	}
+	/*End Header*/
+	
+	
+	/*Mobile Menu*/
+	
+	.mobile-menu {
+		font-size: 16px;
+		font-weight: 600;
+		color: @theme-color;
+		width: 100px;
+		border-radius: 5px;
+		background-color: @theme-color2;
+		text-align: center;
+		margin: 0 auto 15px;
+		cursor: pointer;
+		position: relative;
+		left: -5px;
+	}
+	
+	/*Main Menu*/
+	.menu-menu-1-container{
+		
+		ul#menu-menu-1 {
+			margin-top: 6%;
+
+			@media(min-width:1200px){
+				float: right;
+			}
+	
+			@media(max-width:1199px){
+				width: 400px;
+				height: 45px;
+				margin-top: 5%;
+			}
+			
+			@media(max-width:991px) and (min-width:768px){
+				/*margin: 10px auto;*/
+			}
+			
+			@media(max-width:767px){
+				text-align:center;
+				width:100%;
+				height:auto;
+				background-color: @theme-color2;
+				border-radius:3px;
+				box-shadow:2px 2px 8px @theme-color; 
+			}
+			
+		}
+		
+		i.fa.fa-play {
+			transform: rotate(90deg);
+			font-size: 16px;
+			color: #0e639c;
+			
+			@media(max-width:767px){
+				display:none;
+			}
+		}
+		
+		ul#menu-menu-1 > li {
+			&:after{
+				content: " ";
+				color: @theme-color2;
+				font-weight: 900;
+				font-size:@menu-font-size;
+				
+				@media(max-width:1365px){
+					font-size:@menu-font-size-sm;
+				}
+				
+				@media(max-width:767px){
+					display:none;
+				}
+			}
+			
+			&:last-child{
+				&:after{
+					visibility:hidden;
+				}
+			}
+			
+			@media(min-width:768px){
+				a{
+					padding: 0 5px;
+				}
+				
+				.sub-menu a{
+					padding:5px;
+				}
+			}
+		}
+		
+		
+	
+		.menu-item{
+			text-decoration:none;
+			/*text-transform:uppercase;*/
+			float:left;
+			position:relative;
+			padding-bottom: 7px;
+			
+			.mobile-dropdown{
+				color:@theme-color2;
+				font-weight:bold;
+				cursor:pointer;
+				position: absolute;
+				left: ~"calc(50% + 65px)";
+				width: 30px;
+				text-align: center;
+				font-size: 18px;
+				background-color: @theme-color;
+			}
+			
+			@media(max-width:767px){
+				float:none;
+				display:block;
+				margin-top: 5px;
+			}
+			
+			a{
+				color:@menu-font-color;
+				font-family: @font-family2;
+				font-weight: 600;
+				font-size:@menu-font-size;
+				&:hover{
+					text-decoration:none;
+					color:@theme-color2;
+					border-bottom: 20px solid #ffca0b;
+				}
+				
+				@media(max-width:1365px){
+					font-size:@menu-font-size-sm;
+				}
+				
+				@media(max-width:767px){
+					color:@theme-color4;
+				}
+			}
+			
+			.sub-menu{
+				width:225px;
+				display:none;
+				position: absolute;
+				z-index: 10;
+				background-color:@theme-color;
+				padding:7.5px 0;
+				box-shadow: 0 2px 2px @box-shadow-color;
+				
+				.sub-menu{
+    				position:absolute;
+    				top:-5px;
+    				left:120px;
+						
+					@media(max-width:767px){
+        				position: absolute;
+        				top: 46px;
+        				left: 150px;			
+					}
+					
+				}	
+				
+				@media(max-width:767px){
+					left:50%;
+					margin-left:-112.5px;
+				}
+				
+				.current_page_item > a {
+					background-color: @theme-color2;
+					color:white;
+					padding:5px;
+					border-bottom:0;
+				}			
+				
+				li{
+					display:block;
+					padding:0;
+					width: 100%;
+					
+					&:hover{
+						/*background-color:@theme-color2;
+						color:@theme-color4;*/
+						border-bottom:0;
+					}
+			
+					a{
+						width: 100%;
+						display: block;
+						padding: 3px 15px;
+						font-size:13px;
+						color:@menu-font-color;
+						
+						&:hover{
+							background-color:@theme-color2;
+							color:@theme-color4;
+							border-bottom:0;
+						}
+					}
+				}
+			}
+		}
+		
+		.current_page_item > a{
+				color:@theme-color2;
+				border-bottom: 20px solid #ffca0b;
+		}
+
+		.current_page_item .current_page_item a{
+			background-color:@menu-font-color;
+		}
+		
+		@media(max-width:767px){
+			.current_page_item.menu-item {
+				padding-top:10px;
+			}
+			
+			.current_page_item.menu-item > a {
+				color: @theme-color2;
+			}
+		}
+
+	}
+	/*End Main Menu*/
+	/*Start Main Content Section*/
+		.col-sm-12.blog-main {
+			z-index: 2;
+		}
+	/*End Main Content Section*/
+    /*Start Attorney Page Sidebar*/
+
+		@media(max-width:767px){
+			#bio-menu {
+				padding-left:30px;   
+			}
+		}
+
+	/*End Attorney Page Sidebar*/
+
+	/*Start Desktop/Mobile Classes*/
+		.mobile,.mobile-xs{
+			display:none;
+		}
+
+		@media(max-width:991px){
+			.desktop{
+				display:none;
+			}
+
+			.mobile{
+				display:block;
+			}
+		}
+		
+		@media(max-width:767px){
+			.desktop-xs{
+				display:none;
+			}
+
+			.mobile-xs{
+				display:block;
+			}
+		}
+	/*End Desktop/Mobile Classes*/
+}
