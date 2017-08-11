@@ -1,0 +1,29 @@
+/*Post Widget*/
+#dummy-blog-container a:hover {
+    text-decoration: none;
+}
+
+div#dummy-blog-container h3 {
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 0;
+}
+
+div#dummy-blog-container * {
+    color: white;
+}
+
+div#dummy-blog-container .date{
+    display:block;
+    font-size:14px;
+}
+
+div#dummy-blog-container {
+    width: 300px;
+	max-width:100%;
+    margin: 50px auto 20px;
+    padding: 20px;
+    box-shadow: none;
+    background-color: transparent;
+    border-radius: 20px;
+}

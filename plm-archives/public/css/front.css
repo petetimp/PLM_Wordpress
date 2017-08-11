@@ -1,0 +1,17 @@
+/*Archive Widget*/
+[data-year][data-page] {
+    display: none;
+}
+
+.pagination-container[data-onpage='1'] .next {
+	display:none;
+}
+
+.pagination-container[data-onpage='1'][data-pages='1'] {
+    display: none;
+}
+
+.pagination-container {
+    display: block!important;
+	min-height:80px;
+}

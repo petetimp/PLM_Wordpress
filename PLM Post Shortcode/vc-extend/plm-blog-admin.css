@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.wpb_plm_blog.plm-blog .wpb_element_title i, a#plm_blog .vc_element-icon {
+    background-image: url(plm.png);
+    background-size: 32px;
+}
+
+[data-param_settings*='hidden'] {
+    display: none;
+}

@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.wpb_plm_archives.plm-archives .wpb_element_title i, a#plm_archives .vc_element-icon {
+    background-image: url(plm.png);
+    background-size: 32px;
+}
+
+[data-param_settings*='hidden'] {
+    display: none;
+}
