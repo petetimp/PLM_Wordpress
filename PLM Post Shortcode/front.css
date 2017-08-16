@@ -27,3 +27,10 @@ div#dummy-blog-container {
     background-color: transparent;
     border-radius: 20px;
 }
+
+#dummy-blog-container .featured-image-container img {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+    padding: 20px;
+}

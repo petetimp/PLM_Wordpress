@@ -194,6 +194,22 @@ function plm_blog_integrateWithVC() {
 					"description" => __( "Please Specify Width of Blog (Any CSS unit accepted)", "plmorg" )
 				 ),
 	   			 array(
+					"type" => "dropdown",
+					"class" => "featured-image",
+					"heading" => __( "Featured Image", "plmorg" ),
+					"param_name" => "featured_image",
+					"value" => __( array("No","Yes"), "plmorg" ),
+					"description" => __( "Show the Featured Image?", "plmorg" )
+				 ),
+	   			 array(
+					"type" => "textfield",
+					"class" => "featured-image hidden",
+					"heading" => __( "Featured Image Size", "plmorg" ),
+					"param_name" => "featured_image_size",
+					"value" => __( "300x300", "plmorg" ),
+					"description" => __( "Please Specify Width and Height of Featured Image and use Number Values (for example, 'Width'x'Height', 350x200)", "plmorg" )
+				 ),
+	   			 array(
 					"type" => "checkbox",
 					"class" => "blog-box-shadow",
 					"heading" => __( "Include Box Shadow?", "plmorg" ),
@@ -214,7 +230,7 @@ function plm_blog_integrateWithVC() {
 					"class" => "show-blog-title",
 					"heading" => __( "Show Blog Title", "plmorg" ),
 					"param_name" => "show_blog_title",
-					"value" => __( array("Yes","No"), "plmorg" ),
+					"value" => __( array("No","Yes"), "plmorg" ),
 					"description" => __( "Show the Title of the Blog?", "plmorg" )
 				 ),
 				 array(
@@ -441,7 +457,9 @@ function plm_post_shortcode( $atts, $content = null){
 			'number' => '3',
 			'blog_width' => '300px',
 			'blog_shadow' => '',
-			'show_blog_title' => 'Yes',
+			'featured_image' => 'No',
+			'featured_image_size' => '300x300',
+			'show_blog_title' => 'No',
 			'blog_title' => 'RECENT POSTS',
 			'blog_title_html'=> 'h3',
 			'blog_title_alignment' => 'center',
@@ -479,6 +497,14 @@ function plm_post_shortcode( $atts, $content = null){
 	$atts['css']=substr($atts['css'],$leftBracket + 1);
 	$atts['css']=rtrim($atts['css'],"}");
 	
+	//parse out height and width of featured image
+	$xImage=stripos($atts['featured_image_size'],"x");
+	//echo "<script>console.log('".$xImage."')</script>";
+	$imageWidth=substr($atts['featured_image_size'], 0, 3);
+	$imageWidth=(int) preg_replace('/\D/', '', $imageWidth);
+	$imageHeight=substr($atts['featured_image_size'], $xImage + 1, 3);
+	//echo "<script>console.log('".$imageHeight."')</script>";
+	$imageHeight=(int) preg_replace('/\D/', '', $imageHeight);
 	
 	$args = array(
 		// Arguments for your query.
@@ -504,27 +530,46 @@ function plm_post_shortcode( $atts, $content = null){
 				<div class='container-fluid'>";
 		}
 		
-				if($atts['show_blog_title'] == "Yes"){
-					$blogHTML.="<div class='row heading'>
+		if($atts['show_blog_title'] == "Yes"){
+			$blogHTML.="<div class='row heading'>
 						<div class='col-md-12'>
 							<".$atts['blog_title_html']." style='text-align:" . $atts['blog_title_alignment'] . ";'><a style='color:" . $atts['blog_title_color' ] . ";font-size:" . $atts['blog_title_font_size'] . "' href='/blog'>" . $atts['blog_title'] . "</a></".$atts['blog_title_html'].">
 						</div>
 					</div>";
-				}
-					$blogHTML.="<div class='row inner'>
-						<div class='col-md-12'>";
+		}
 		
+		if($atts['featured_image'] == "No"){
+			$blogHTML.="<div class='row inner'>
+						<div class='col-md-12'>";
+		}
+			
+			
+	
 		// Start looping over the query results.
 		while ( $query->have_posts() ) {
 			$query->the_post();
+			
+			
 			
 			if($atts['read_more'] == "No"){
 				$atts['read_more_text'] = " ";		
 			}
 		
-			$blogHTML.="
-				<div class='dummy-post'>
-					<a href='" . get_permalink() . "'>";
+			$blogHTML.="<div class='dummy-post'>";
+			
+			if($atts['featured_image'] == "Yes"){
+				$featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); 
+				
+				$blogHTML.="<div class='row inner'>
+							<div class='col-md-4'>
+								<div class='featured-image-container'>
+									<img src='". esc_url($featured_img_url) ."' style='width:" . $imageWidth . "px;height:" . $imageHeight . "px;'/>
+								</div>
+							</div>
+							<div class='col-md-8'>";	
+			}
+			
+			$blogHTML.="<a href='" . get_permalink() . "'>";
 			
 			if($atts['date_position']=="Before Post Title"){
 				$blogHTML.="
@@ -550,19 +595,30 @@ function plm_post_shortcode( $atts, $content = null){
 			}else{
 				$blogHTML.="</div>";
 			}
+			
+			if($atts['featured_image'] == "Yes"){
+				$blogHTML.="</div></div>";
+			}
+			
 		}
 		
 		// Restore original post data.
 		wp_reset_postdata();
 		//wp_reset_query();
 		
-		$blogHTML.="	
+		if($atts['featured_image'] == "Yes"){
+			$blogHTML.="	
+					</div>
+				</div>
+			";
+		}else{
+			$blogHTML.="	
 						</div>
 					</div>
 				</div>
 			</div>
 			";
-		
+		}
 		return $blogHTML;
 		
 	

@@ -16,6 +16,10 @@ jQuery(document).ajaxSuccess(
 			jQuery("[data-param_settings*='read-more hidden']").show();
 		}
 		
+		if(jQuery("select.featured_image").attr("data-option")== "Yes"){
+			jQuery("[data-param_settings*='featured-image hidden']").show();
+		}
+		
 		//console.log("Ajax Success");
 		jQuery(document).on('change',"select.show_post_content", 
 			function() {
@@ -53,6 +57,16 @@ jQuery(document).ajaxSuccess(
 					jQuery("[data-param_settings*='read-more hidden']").slideDown();
 				}else{
 					jQuery("[data-param_settings*='read-more hidden']").slideUp();
+				}
+			}
+		);
+		
+		jQuery(document).on('change',"select.featured_image", 
+			function() {
+				if(this.value=="Yes"){
+					jQuery("[data-param_settings*='featured-image hidden']").slideDown();
+				}else{
+					jQuery("[data-param_settings*='feautred-image hidden']").slideUp();
 				}
 			}
 		);
