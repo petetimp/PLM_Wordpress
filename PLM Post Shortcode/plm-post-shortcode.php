@@ -166,7 +166,7 @@ function plm_blog_integrateWithVC() {
 					"class" => "",
 					"heading" => __( "Exclude Categories", "plmorg" ),
 					"param_name" => "exclude_categories",
-					"value" => "",
+					"value" => __("0","plmorg"),
 					"description" => __( "Exclude Categories Based on Category IDs (separate multiple categories with commas)", "plmorg" )
 				 ),
 	   			 array(
@@ -195,6 +195,30 @@ function plm_blog_integrateWithVC() {
 				 ),
 	   			 array(
 					"type" => "dropdown",
+					"class" => "pagination",
+					"heading" => __( "Pagination", "plmorg" ),
+					"param_name" => "pagination",
+					"value" => __( array("No","Yes"), "plmorg" ),
+					"description" => __( "Show Pagination? (Can't be used with Load More Posts)", "plmorg" )
+				 ),
+	   			 array(
+					"type" => "dropdown",
+					"class" => "load-more-posts",
+					"heading" => __( "Load More Posts", "plmorg" ),
+					"param_name" => "load_more_posts",
+					"value" => __( array("No","Yes"), "plmorg" ),
+					"description" => __( "Show the Load More Posts Button? (Can't be used with Pagination)", "plmorg" )
+				 ),
+	   			 array(
+					"type" => "textfield",
+					"class" => "load-more-posts hidden",
+					"heading" => __( "Number of Load More Posts", "plmorg" ),
+					"param_name" => "load_more_posts_number",
+					"value" => __( array("No","Yes"), "plmorg" ),
+					"description" => __( "Number of Posts to Show after load more button has been clicked.", "plmorg" )
+				 ),
+	   			 array(
+					"type" => "dropdown",
 					"class" => "featured-image",
 					"heading" => __( "Featured Image", "plmorg" ),
 					"param_name" => "featured_image",
@@ -208,6 +232,14 @@ function plm_blog_integrateWithVC() {
 					"param_name" => "featured_image_size",
 					"value" => __( "300x300", "plmorg" ),
 					"description" => __( "Please Specify Width and Height of Featured Image and use Number Values (for example, 'Width'x'Height', 350x200)", "plmorg" )
+				 ),
+				 array(
+					"type" => "textfield",
+					"class" => "featured-image hidden",
+					"heading" => __( "Default Featured Image", "plmorg" ),
+					"param_name" => "default_featured_image",
+					"value" => __( "/wp-content/plugins/plm-post-shortcode/public/images/default-placeholder-300x300.png", "plmorg" ),
+					"description" => __( "Please Specify Default Featured Image as an URI", "plmorg" )
 				 ),
 	   			 array(
 					"type" => "checkbox",
@@ -390,7 +422,7 @@ function plm_blog_integrateWithVC() {
 					"class" => "show-excerpt hidden",
 					"heading" => __( "Post End Chars", "plmorg" ),
 					"param_name" => "excerpt_end_chars",
-					"value" => __( "Read More >>", "plmorg" ),
+					"value" => __( "...", "plmorg" ),
 					"description" => __( "Input What You'd Like to Use At the End of Each Excerpt (Default is ...)", "plmorg" )
 				 ),
 				 array(
@@ -406,7 +438,7 @@ function plm_blog_integrateWithVC() {
 					"class" => "read-more hidden",
 					"heading" => __( "Read More Text", "plmorg" ),
 					"param_name" => "read_more_text",
-					"value" => __( "...", "plmorg" ),
+					"value" => __( "Read More &gt;&gt;", "plmorg" ),
 					"description" => __( "Input What You'd Like to Use for Each Read More Link (Default is Read More >>)", "plmorg" )
 				 ),
 				 array(
@@ -456,9 +488,13 @@ function plm_post_shortcode( $atts, $content = null){
 		array(
 			'number' => '3',
 			'blog_width' => '300px',
+			'pagination' => 'No',
+			'load_more_posts' => 'No',
+			'load_more_posts_number' => '',
 			'blog_shadow' => '',
 			'featured_image' => 'No',
 			'featured_image_size' => '300x300',
+			'default_featured_image' => '',
 			'show_blog_title' => 'No',
 			'blog_title' => 'RECENT POSTS',
 			'blog_title_html'=> 'h3',
@@ -468,7 +504,7 @@ function plm_post_shortcode( $atts, $content = null){
 			'post_content_color' => "#ffffff",
 			'post_content_font_size'=>"13px",
 			'category_name' => '',
-			'exclude_categories' => '999',
+			'exclude_categories' => '0',
 			'post_order' => 'DESC',
 			'order_by' => 'date',
 			'b_color' => '#0f4b91',
@@ -487,7 +523,7 @@ function plm_post_shortcode( $atts, $content = null){
 			"excerpt_length" => "55",
 			"excerpt_end_chars" => "...",
 			"read_more" => "No",
-			"read_more_text" => "Read More >>",
+			"read_more_text" => "Read More &gt;&gt;",
 			'css' => ''
 		), $atts, 'plm_blog' 
 	);
@@ -506,6 +542,16 @@ function plm_post_shortcode( $atts, $content = null){
 	//echo "<script>console.log('".$imageHeight."')</script>";
 	$imageHeight=(int) preg_replace('/\D/', '', $imageHeight);
 	
+	if($atts['load_more_posts_number'] != '' || $atts['pagination']=='Yes'){
+		$postsPerPage=$atts['number'];
+		$atts['number']="-1";
+		
+		//Can't have pagination and load more posts at same time
+		if($atts['pagination']=='Yes'){
+			$atts['load_more_posts'] = 'No';	
+		}
+	}
+	
 	$args = array(
 		// Arguments for your query.
 		'post_type' => $atts['post_type'],
@@ -521,6 +567,18 @@ function plm_post_shortcode( $atts, $content = null){
 	 
 	// Check that we have query results.
 	if ( $query->have_posts() ) {
+		
+		//Custom Pagination
+		$postCount = $query->found_posts;
+		
+		$numPages = intval($postCount / $postsPerPage);
+		$modulus = fmod($postCount,$postsPerPage);
+		$onPage=1;
+		$postNum=1;
+		
+		if($modulus != 0){
+			$numPages += 1; 
+		}
 		
 		if($atts['blog_shadow']=="true"){
 			$blogHTML="<div id='dummy-blog-container'  style='background-color:" . $atts['b_color'] . ";" . $atts['css'] . ";width:" . $atts['blog_width'] .";box-shadow: 2px 2px 5px #999;'>
@@ -555,17 +613,32 @@ function plm_post_shortcode( $atts, $content = null){
 				$atts['read_more_text'] = " ";		
 			}
 		
-			$blogHTML.="<div class='dummy-post'>";
+			if($atts['pagination']=='Yes'){
+				if($postNum > $postsPerPage){
+					$postsPerPage+=$postsPerPage/$onPage;
+					$onPage++;					
+				}
+				
+				$blogHTML.="<div class='dummy-post' data-post= " . $postNum . " data-page=" . $onPage . ">";
+				$postNum++;
+			}else{
+				$blogHTML.="<div class='dummy-post'>";
+			}
 			
 			if($atts['featured_image'] == "Yes"){
 				$featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); 
 				
+				if ($atts['default_featured_image']==''){
+					$atts['default_featured_image']="/wp-content/plugins/plm-post-shortcode/public/images/default-placeholder-300x300.png";
+				}
+				
 				$blogHTML.="<div class='row inner'>
 							<div class='col-md-4'>
 								<div class='featured-image-container'>
-									<img src='". esc_url($featured_img_url) ."' style='width:" . $imageWidth . "px;height:" . $imageHeight . "px;'/>
+									<a href='" . get_permalink() . "'><img onerror='defaultImage(this);' src='". esc_url($featured_img_url) ."' style='width:" . $imageWidth . "px;height:" . $imageHeight . "px;'/></a>
 								</div>
 							</div>
+							<script>function defaultImage(img){img.src='" . $atts['default_featured_image'] . "'}</script>
 							<div class='col-md-8'>";	
 			}
 			
@@ -619,6 +692,113 @@ function plm_post_shortcode( $atts, $content = null){
 			</div>
 			";
 		}
+		
+		if($atts['pagination']=='Yes'){
+			$blogHTML.='<div class="pagination" data-onpage="1"><div class="page-prev">Previous Page</div><div class="page-next">Next Page</div></div>
+							<script type="text/javascript">
+								$=jQuery.noConflict();
+    							$(document).ready(
+									function(){
+										var minHeight=$("div#dummy-blog-container").height() + "px";
+										
+										$("div#dummy-blog-container").css("min-height",minHeight).css("min-height",minHeight);
+									
+										$("[data-page = 1]").addClass("currentPage");
+										
+										var lastPage;
+										//Hide Next Button if only 1 page
+										$(".dummy-post").each(
+											function(){
+												
+												if(parseInt($(this).attr("data-page"))>=2){
+													$(".page-next").css("display","inline-block");
+												}else{
+													$(".page-next").css("display","none");
+												}
+												
+												lastPage=$(this).attr("data-page");
+											}
+										);
+									
+										$(".pagination > div").click(
+											function(){
+												var onPage=$(".pagination").attr("data-onpage");	
+												var selector;
+												if($(this).hasClass("page-next")){
+													$(".pagination").attr("data-onpage", ++onPage);
+													$("[data-page]").removeClass("currentPage").slideUp("fast");
+													$("[data-page" + "=" + onPage + "]").addClass("currentPage").slideDown("fast");
+													if(onPage > 1){
+														$(".page-prev").css("display","inline-block");
+													}else{
+														$(".page-prev").css("display","none");
+													}
+													
+													if(onPage == lastPage){
+														$(".page-next").css("display","none");
+													}else{
+														$(".page-next").css("display","inline-block");
+													}
+												}else{
+													$(".pagination").attr("data-onpage", --onPage);
+													$("[data-page]").removeClass("currentPage").slideUp("fast");
+													$("[data-page" + "=" + onPage + "]").addClass("currentPage").slideDown("fast");
+													if(onPage > 1){
+														$(".page-prev").css("display","inline-block");
+													}else{
+														$(".page-prev").css("display","none");
+													}
+													
+													if(onPage == lastPage){
+														$(".page-next").css("display","none");
+													}else{
+														$(".page-next").css("display","inline-block");
+													}
+												}
+											}
+										);
+									}
+								);
+							</script>';
+			;
+		}
+		
+		if($atts['load_more_posts']=='Yes'){
+				$currentElems=array();
+			//create array for current elements
+			for($index=0;$index < $atts['load_more_posts_number']; $index++){
+				$currentElems[$index]=$atts['load_more_posts_number'] + $index;
+			}
+
+			$atts['load_more_posts_number']++;
+		
+			
+			$blogHTML.='<div class="load-more">LOAD MORE POSTS</div>
+							<script type="text/javascript">
+								$=jQuery.noConflict();
+								var currentElems=['.implode(",",$currentElems).'];
+    							$(document).ready(
+									function(){
+										var firstPress=true;
+										$(".dummy-post:nth-child(n+'. $atts['load_more_posts_number'] .')").slideUp();
+										$(".load-more").click(
+											function(){
+												for(var i=0; i < currentElems.length; i++){
+													var currentElement=currentElems[i];
+													if(firstPress){currentElement+=1;currentElems[i]+=1}
+													
+													$(".dummy-post:nth-child("+ currentElement +")").slideDown();
+													//console.log('. $numPages .');
+													currentElems[i]=currentElems[i] + currentElems.length;   
+												}
+												firstPress=false;
+
+											}
+										);
+									}
+								);
+							</script>';
+		}
 		return $blogHTML;
 		
 	
@@ -629,6 +809,7 @@ function plm_post_shortcode( $atts, $content = null){
 	
 		
 }
+	/*Modified function - original found here: https://stackoverflow.com/questions/4082662/multiple-excerpt-lengths-in-wordpress*/
 	function excerpt($limit, $chars) {
 		$excerpt = explode(' ', get_the_excerpt(), $limit);
 		if (count($excerpt)>=$limit) {

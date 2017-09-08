@@ -34,3 +34,37 @@ div#dummy-blog-container {
     margin: 0 auto;
     padding: 20px;
 }
+
+#dummy-blog-container + .load-more {
+    text-align: center;
+    width: 150px;
+    margin: 20px auto;
+    cursor: pointer;
+    padding: 10px;
+}
+
+#dummy-blog-container + .pagination {
+    width: 100%;
+}
+
+.pagination > div {
+    cursor: pointer;
+    padding: 8px 15px;
+    border: 1px solid;
+    width: 150px;
+    text-align: center;
+    display: inline-block;
+    margin-right:10px
+}
+
+.pagination .page-prev {
+    display: none;
+}
+
+[data-page]{
+	display:none;
+}
+
+[data-page = '1']{
+	display:block;
+}
