@@ -1,5 +1,4 @@
 <?php
-
 function PLMTheme_enqueue_styles() {
     wp_register_style('bootstrap', get_template_directory_uri() . '/bootstrap/css/bootstrap.min.css' );
     $dependencies = array('bootstrap','PLM');

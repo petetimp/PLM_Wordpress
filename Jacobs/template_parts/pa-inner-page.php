@@ -13,7 +13,7 @@ Template Name: PA Inner Page
 		
 							<figure class="wpb_wrapper vc_figure">
 								<div class="vc_single_image-wrapper   vc_box_border_grey">
-									<img src="<?php echo get_page_banner('0'); ?>" class="vc_single_image-img attachment-full normal" alt="" >
+									<!--<img src="<?php echo get_page_banner('0'); ?>" class="vc_single_image-img attachment-full normal" alt="" >-->
 									<img src="<?php echo get_page_banner('1'); ?>" class="vc_single_image-img attachment-full fader" alt="" >
 								</div>
 							</figure>

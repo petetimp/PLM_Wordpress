@@ -7,8 +7,12 @@
 
 #Jacobs h1.vc_custom_heading, .inner-practice-area .blog-post > h1:first-child {
     font-size: 48px;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
+}
+
+#Jacobs h2 {
+    font-weight: 600;
 }
 
 #banner-h1 h1 {
@@ -58,6 +62,10 @@
 	margin:20px 5px;
 }
 
+#Jacobs ul.col-sm-6.no-float li span {
+    color: #333333;
+}
+
 #Jacobs ul.col-sm-6.no-float.red-bullets li {
 	color:#af272d;
 }
@@ -69,7 +77,7 @@
 }
 
 .gform_container .body-content{
-    width:375px;
+    width:320px;
     margin:0 auto;
 }
 
@@ -109,12 +117,16 @@
 
 #Jacobs .header-phone-number{
 	float:right;
-	margin-right: 10px;
+	margin-right: 20px;
 }
 
 #Jacobs .header-phone-number, #Jacobs .header-phone-number a {
     color: #333333;
     font-size: 32px;
+}
+
+.header-contact {
+    margin-top: 5px;
 }
 
 .header-social {
@@ -262,7 +274,7 @@ ul#footer-links li a:hover{
 }
 
 .loc-content {
-    font-size: 18px;
+    font-size: 19px;
 }
 
 #footer-copyright,#consultation-disclaimer{
@@ -271,7 +283,7 @@ ul#footer-links li a:hover{
 }
 
 #consultation-disclaimer{
-	display:none;
+	/*display:none;*/
 }
 
 .single #consultation-disclaimer, .page-template-blog-news #consultation-disclaimer{
@@ -288,6 +300,16 @@ div#gform_wrapper_1 {
 
 #Jacobs span.gform_description {
     width: 100%;
+	text-align:justify;
+}
+
+div#consultation-fee {
+    width: 330px;
+    margin: 0 auto;
+}
+
+div#consultation-fee p {
+    font-size: 13px;
 }
 
 form#gform_1 {
@@ -320,7 +342,6 @@ form#gform_1 {
 }
 
 .gform_description{
-	text-align:center;
 	padding-top: 10px;
     font-size: 16px;
 }
@@ -410,6 +431,14 @@ textarea#input_1_6 {
 }
 
 /*Blog/News Pages*/
+
+.post-type-archive-testimonials h1.blog-post-title {
+    display: none;
+}
+
+.post-type-archive-testimonials p.blog-post-meta {
+    visibility: hidden;
+}
 
 #Jacobs.archive .body-content li, #Jacobs.single .body-content li {
     color: #333;
@@ -507,7 +536,14 @@ div#banner-h1 h1 {
 .attorney-info {
     background-color: rgba(0,0,0,.4);
     width: 300px;
-    margin-top:140px;
+    margin-top:175px;
+	margin-left: 15px;
+}
+
+@media(max-width:1599px){
+	.attorney-info {
+		margin-top: 125px;
+	}
 }
 
 #Jacobs h1.attorney-name {
@@ -518,15 +554,16 @@ div#banner-h1 h1 {
     padding: 20px 20px 0;
 }
 
-.attorney#banner-img {
-    background-image: url(/files/2017/08/banner-image.png);
+#Jacobs #banner-img-container {
+    background-image: url(/files/2017/08/bios-banner.png);
     min-height: 487px;
     border-bottom: 4px solid #ffc909;
+	background-size:cover;
 }
 
 #Jacobs #banner-img .person {
     float: right;
-    margin-top: 100px;
+    margin-top: 55px;
     border-bottom: none;
 }
 
@@ -535,8 +572,9 @@ div#banner-h1 h1 {
 }
 
 #Jacobs .attorney#banner-img .vc_single_image-wrapper img{
-	max-width: 336px;
     border: 4px solid white;
+	max-width:100%;
+	margin-left: 15px;
 }
 
 #Jacobs #banner-img ul.contact-info img {
@@ -553,6 +591,14 @@ div#banner-h1 h1 {
 
 #contact-us .vc_col-sm-4 {
     margin: 0 auto -300px;
+}
+
+.testimonials-template-default h1.blog-post-title{
+	display:none;
+}
+
+.testimonials-template-default p.blog-post-meta {
+    visibility: hidden;
 }
 
 @media(max-width:1159px){
@@ -590,9 +636,58 @@ div#banner-h1 h1 {
 	#contact-us .vc_col-sm-4 {
 		margin: 0;
 	}
+	
+	#Jacobs .attorney#banner-img .vc_single_image-wrapper img {
+		margin-left: 0;
+	}
 }
 
-/*Inner Practice Area Pages*/
+/*Inner Mesothelioma Pages*/
+
+.mesothelioma-inner .p-area-heading {
+    background-color: #ffca0f;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#Jacobs .mesothelioma-inner .p-area-heading h4{
+    margin:0;
+}
+
+.mesothelioma-inner .p-area-content {
+    background-color: #f2f2f2;
+    padding: 10px;
+    display:none;
+}
+
+#Jacobs .mesothelioma-inner .p-area-content p{
+    margin-bottom:0;
+}
+
+#Jacobs .mesothelioma-inner .p-area-content p{
+    margin-bottom:0;
+}
+
+#Jacobs .mesothelioma-inner .p-area-content.margin p{
+    margin-bottom:15px;
+}
+
+
+.mesothelioma-inner .body-content .wpb_raw_html {
+    margin-bottom: 15px;
+}
+
+#Jacobs .gray-box {
+    background-color: #f2f2f2;
+    padding: 10px;
+    width: 330px;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+#Jacobs .gray-box p, #Jacobs .gray-box h4 {
+    text-align: left;
+}
 
 
 

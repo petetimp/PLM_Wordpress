@@ -111,7 +111,6 @@
 						);
 					}
 				);
-	
 			<?php if(!is_single() && !is_archive()){ ?>	
 			//Reposition sidebar script
 				jQuery(window).load(

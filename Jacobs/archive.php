@@ -3,8 +3,16 @@
 
 	if($post->post_type=="settlements"){
 		$blog_heading= "SETTLEMENTS";
-	}else{
+		$blog_banner="/files/2017/08/blog-banner.png";	
+	}else if($post->post_type=="testimonials"){
+		$blog_heading= "TESTIMONIALS";
+        $blog_banner="/files/2017/08/testimonials-banner-2.png";	
+	}else if ($post->post_type=="news_releases"){
+		$blog_heading= "NEWS RELEASES";
+		$blog_banner="/files/2017/08/firm-news-banner.png";
+	}else {
 		$blog_heading= "ARCHIVES";	
+		$blog_banner="/files/2017/08/blog-banner.png";	
 	}
 
 ?>
@@ -15,7 +23,7 @@
 					<div class="wpb_single_image wpb_content_element vc_align_center">
 		
 						<figure class="wpb_wrapper vc_figure">
-							<div class="vc_single_image-wrapper   vc_box_border_grey"><img width="1918" height="521" src="/files/2017/08/blog_banner.png" class="vc_single_image-img attachment-full" alt=""></div>
+							<div class="vc_single_image-wrapper   vc_box_border_grey"><img width="1918" height="521" src="<?php echo $blog_banner; ?>" class="vc_single_image-img attachment-full" alt=""></div>
 						</figure>
 					</div>
 					<div class="wpb_text_column wpb_content_element  content" id="banner-h1">

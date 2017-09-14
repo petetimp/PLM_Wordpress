@@ -1,21 +1,20 @@
 <?php 
-
 get_header(); 
 
 global $post;
 
 if ($post->post_type=="post"){
 	$blog_heading= "BLOG";
-	$blog_banner="/files/2017/08/blog_banner.png";
+	$blog_banner="/files/2017/08/blog-banner.png";
 }else if($post->post_type=="news_releases"){
 	$blog_heading= "NEWS RELEASES";
-	$blog_banner="/files/2017/08/blog_banner.png";
+	$blog_banner="/files/2017/08/firm-news-banner.png";
 }else if($post->post_type=="settlements"){
 	$blog_heading= "SETTLEMENTS";
-	$blog_banner="/files/2017/08/blog_banner.png";
+	$blog_banner="/files/2017/08/blog-banner.png";
 }else if($post->post_type=="testimonials"){
 	$blog_heading= "TESTIMONIALS";
-	$blog_banner="/files/2017/08/blog_banner.png";
+	$blog_banner="/files/2017/08/testimonials-banner-2.png";
 }
 							
 

@@ -430,6 +430,13 @@ a img.aligncenter {
   font-size: 18px;
   background-color: #ffc909;
 }
+#Jacobs .menu-menu-1-container .menu-item .mobile-dropdown.inner {
+  background-color: #27397f;
+  color: #ffc909;
+  z-index: 10;
+  margin-left: 18px;
+  top: 0;
+}
 @media (max-width: 767px) {
   #Jacobs .menu-menu-1-container .menu-item {
     float: none;
@@ -475,8 +482,9 @@ a img.aligncenter {
 @media (max-width: 767px) {
   #Jacobs .menu-menu-1-container .menu-item .sub-menu .sub-menu {
     position: absolute;
-    top: 46px;
+    top: 25px;
     left: 150px;
+    z-index: 30;
   }
 }
 @media (max-width: 767px) {

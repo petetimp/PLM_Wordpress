@@ -517,6 +517,16 @@ a img.aligncenter {
 				text-align: center;
 				font-size: 18px;
 				background-color: @theme-color;
+				
+				
+			}
+			
+			.mobile-dropdown.inner{
+					background-color: @theme-color2;
+					color:@theme-color;
+					z-index:10;
+					margin-left:18px;
+					top:0;
 			}
 			
 			@media(max-width:767px){
@@ -561,8 +571,9 @@ a img.aligncenter {
 						
 					@media(max-width:767px){
         				position: absolute;
-        				top: 46px;
-        				left: 150px;			
+        				top: 25px;
+        				left: 150px;
+						z-index:30;
 					}
 					
 				}	
