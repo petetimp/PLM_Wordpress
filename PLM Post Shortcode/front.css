@@ -68,3 +68,26 @@ div#dummy-blog-container {
 [data-page = '1']{
 	display:block;
 }
+
+.pagination.numbered .pages li {
+    display: inline-block;
+    cursor:pointer;
+    padding:5px;
+}
+
+.pagination.numbered .pages li:before {
+    display:none!important;
+}
+
+
+
+.pagination.numbered ul.pages {
+    display:inline-block;
+    margin:0!important;
+}
+
+.numbered.pagination > div{
+    width:25px;
+    padding:5px;
+    margin:0;
+}

@@ -24,6 +24,10 @@ jQuery(document).ajaxSuccess(
 			jQuery("[data-param_settings*='load-more-posts hidden']").show();
 		}
 		
+		if(jQuery("select.pagination").attr("data-option")== "Yes"){
+			jQuery("[data-param_settings*='pagination hidden']").show();
+		}
+		
 		//console.log("Ajax Success");
 		jQuery(document).on('change',"select.show_post_content", 
 			function() {
@@ -81,6 +85,16 @@ jQuery(document).ajaxSuccess(
 					jQuery("[data-param_settings*='load-more-posts hidden']").slideDown();
 				}else{
 					jQuery("[data-param_settings*='load-more-posts hidden']").slideUp();
+				}
+			}
+		);
+		
+		jQuery(document).on('change',"select.pagination", 
+			function() {
+				if(this.value=="Yes"){
+					jQuery("[data-param_settings*='pagination hidden']").slideDown();
+				}else{
+					jQuery("[data-param_settings*='pagination hidden']").slideUp();
 				}
 			}
 		);

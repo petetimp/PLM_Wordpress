@@ -201,6 +201,14 @@ function plm_blog_integrateWithVC() {
 					"value" => __( array("No","Yes"), "plmorg" ),
 					"description" => __( "Show Pagination? (Can't be used with Load More Posts)", "plmorg" )
 				 ),
+				 array(
+					"type" => "dropdown",
+					"class" => "pagination hidden",
+					"heading" => __( "Pagination Style", "plmorg" ),
+					"param_name" => "pagination_style",
+					"value" => __( array("Prev/Next","Numbered"), "plmorg" ),
+					"description" => __( "Pick the style for the blog pagination.", "plmorg" )
+				 ),
 	   			 array(
 					"type" => "dropdown",
 					"class" => "load-more-posts",
@@ -232,6 +240,14 @@ function plm_blog_integrateWithVC() {
 					"param_name" => "featured_image_size",
 					"value" => __( "300x300", "plmorg" ),
 					"description" => __( "Please Specify Width and Height of Featured Image and use Number Values (for example, 'Width'x'Height', 350x200)", "plmorg" )
+				 ),
+				 array(
+					"type" => "dropdown",
+					"class" => "featured-image hidden",
+					"heading" => __( "Blog Post Column Size", "plmorg" ),
+					"param_name" => "blog_post_column_size",
+					"value" =>__( array("1/3-2/3","1/4-3/4"), "plmorg" ),
+					"description" => __( "Please Specify the Column Size for your Blog Posts", "plmorg" )
 				 ),
 				 array(
 					"type" => "textfield",
@@ -489,12 +505,14 @@ function plm_post_shortcode( $atts, $content = null){
 			'number' => '3',
 			'blog_width' => '300px',
 			'pagination' => 'No',
+			'pagination_style' => 'Prev/Next',
 			'load_more_posts' => 'No',
 			'load_more_posts_number' => '',
 			'blog_shadow' => '',
 			'featured_image' => 'No',
 			'featured_image_size' => '300x300',
 			'default_featured_image' => '',
+			'blog_post_column_size' => '',
 			'show_blog_title' => 'No',
 			'blog_title' => 'RECENT POSTS',
 			'blog_title_html'=> 'h3',
@@ -580,6 +598,14 @@ function plm_post_shortcode( $atts, $content = null){
 			$numPages += 1; 
 		}
 		
+		//Featured Image/Blog Post Column Width
+		if($atts['blog_post_column_size'] == "1/4-3/4"){
+			$atts['blog_post_column_size']=array(3,9);
+		}
+		else{
+			$atts['blog_post_column_size']=array(4,8);
+		}
+		
 		if($atts['blog_shadow']=="true"){
 			$blogHTML="<div id='dummy-blog-container'  style='background-color:" . $atts['b_color'] . ";" . $atts['css'] . ";width:" . $atts['blog_width'] .";box-shadow: 2px 2px 5px #999;'>
 				<div class='container-fluid'>";
@@ -633,13 +659,13 @@ function plm_post_shortcode( $atts, $content = null){
 				}
 				
 				$blogHTML.="<div class='row inner'>
-							<div class='col-md-4'>
+							<div class='col-md-" . $atts['blog_post_column_size'][0] . "'>
 								<div class='featured-image-container'>
 									<a href='" . get_permalink() . "'><img onerror='defaultImage(this);' src='". esc_url($featured_img_url) ."' style='width:" . $imageWidth . "px;height:" . $imageHeight . "px;'/></a>
 								</div>
 							</div>
 							<script>function defaultImage(img){img.src='" . $atts['default_featured_image'] . "'}</script>
-							<div class='col-md-8'>";	
+							<div class='col-md-" . $atts['blog_post_column_size'][1] . "'>";	
 			}
 			
 			$blogHTML.="<a href='" . get_permalink() . "'>";
@@ -694,8 +720,59 @@ function plm_post_shortcode( $atts, $content = null){
 		}
 		
 		if($atts['pagination']=='Yes'){
-			$blogHTML.='<div class="pagination" data-onpage="1"><div class="page-prev">Previous Page</div><div class="page-next">Next Page</div></div>
+			
+			if($atts['pagination_style']=='Numbered'){
+				$blogHTML.='<div class="pagination numbered" data-onpage="1">
+								<div class="page-prev">&lt;&lt;</div>
+									<ul class="pages">
+										<li class="currentItem" data-item="1">1</li>
+									</ul>
+									<script>
+										for(var i=2; i<=' . $onPage . ';i++){
+											$("<li data-item=" + i + ">" + i + "</li>").appendTo(".pagination.numbered .pages")
+										}
+									</script>
+									
+								<div class="page-next">&gt;&gt;</div>
+							</div>
 							<script type="text/javascript">
+								$=jQuery.noConflict();
+								$(document).ready(
+									function(){
+										$(".pagination.numbered .pages li").click(
+											function(){
+												var onPage=$(this).attr("data-item");
+												var lastPage=$("ul.pages li:last-child").text();
+												
+												$(".pagination").attr("data-onpage", onPage);
+												$("[data-page]").removeClass("currentPage").slideUp("fast");
+												$("[data-page" + "=" + onPage + "]").addClass("currentPage").slideDown("fast");
+												
+												if(onPage > 1){
+													$(".page-prev").css("display","inline-block");
+												}else{
+													$(".page-prev").css("display","none");
+												}
+													
+												if(onPage == lastPage){
+													$(".page-next").css("display","none");
+												}else{
+													$(".page-next").css("display","inline-block");
+												}
+												
+												//numerical code
+												$(".pages li").removeClass("currentItem");
+												$("[data-item=" + onPage + "]").addClass("currentItem");
+											}
+										);
+									}
+								);
+							</script>
+							';	
+			}else{
+				$blogHTML.='<div class="pagination" data-onpage="1"><div class="page-prev">Previous Page</div><div class="page-next">Next Page</div></div>';
+			}
+					$blogHTML.='<script type="text/javascript">
 								$=jQuery.noConflict();
     							$(document).ready(
 									function(){
@@ -719,10 +796,10 @@ function plm_post_shortcode( $atts, $content = null){
 												lastPage=$(this).attr("data-page");
 											}
 										);
-									
+										
 										$(".pagination > div").click(
 											function(){
-												var onPage=$(".pagination").attr("data-onpage");	
+												var onPage=$(".pagination").attr("data-onpage");
 												var selector;
 												if($(this).hasClass("page-next")){
 													$(".pagination").attr("data-onpage", ++onPage);
@@ -755,6 +832,10 @@ function plm_post_shortcode( $atts, $content = null){
 														$(".page-next").css("display","inline-block");
 													}
 												}
+												
+												//numerical code
+												$(".pages li").removeClass("currentItem");
+												$("[data-item=" + onPage + "]").addClass("currentItem");
 											}
 										);
 									}
