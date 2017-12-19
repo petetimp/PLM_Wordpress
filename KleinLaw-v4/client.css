@@ -1,0 +1,323 @@
+/*Headings*/
+
+#Klein h1 {
+    font-family: LatoWebThin;
+}
+
+#Klein h2 {
+    color: #4e7289;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/*Content Styles*/
+
+#Klein .body-content li{
+    margin-bottom:20px;
+}
+
+#Klein .body-content {
+    margin: 10px 0 20px;
+}
+
+#Klein .body-content ul {
+    margin-left: 30px;
+}
+
+/*Footer*/
+
+.copyright {
+    padding: 0;
+}
+
+#Klein .copyright-section{
+    text-align: center;
+    background-color: #333;
+    padding:20px;
+}
+
+#Klein .copyright-section * {
+    color: white;
+}
+
+.footer-menu {
+    display: block;
+    font-style:italic;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.blog-footer {
+    background-image: url(/files/2017/12/bigstock-Camden-Waterfront-1542640edited-e1512961000157.jpg);
+    background-size: cover;
+	text-align: center;
+}
+
+.blog-footer img {
+    max-width: 100%;
+}
+
+.blog-footer .col-md-4 {
+    padding: 25px 15px;
+}
+
+.blog-footer .col-md-4:first-child {
+    text-align: left;
+}
+
+.blog-footer .col-md-4:last-child {
+    text-align: right;
+}
+
+@media(max-width:991px){
+	#Klein .blog-footer .col-md-4{
+		text-align:center;
+	}
+}
+
+#map-section .loc-content {
+    padding: 15px;
+    font-size: 18px;
+	background-color: rgba(238, 242, 246, .9);
+    color: #222222;
+}
+
+#map-section {
+    width: 320px;
+	max-width: 100%;
+    margin: 0 auto;
+    background-color: #1c4359;
+    color: white;
+}
+
+#map-section .phone a, #map-section [itemprop='name'] {
+    font-size: 20px;
+    font-weight: 600;
+    color: #4e7389;
+}
+
+#map-section [itemprop='name']{
+    font-size:18px;
+}
+
+.blog-footer img {
+    max-width: 100%;
+}
+
+/*Practice Area Sidebar */
+
+#Klein #practice-area-sidebar ul{
+    margin-left: 0;
+}
+
+#Klein #practice-area-sidebar {
+    width: 350px;
+    max-width: 75%;
+    padding: 30px 0;
+    float: right;
+}
+
+#Klein #practice-area-sidebar li a{
+	color: white;
+}
+
+#Klein #practice-area-sidebar h3, #Klein #plm-slider h3 {
+    color: #ffffff;
+    background-color: #1c4359;
+    margin: 0;
+    text-align: center;
+    font-size: 28px;
+    padding: 10px;
+    font-family: LatoWebThin;
+}
+
+#Klein #practice-area-sidebar > ul > li {
+    font-size: 18px;
+    margin-bottom: 1px;
+    cursor: pointer;
+    
+}
+
+#Klein #practice-area-sidebar ul.children-content {
+    display: none;
+}
+
+#Klein #practice-area-sidebar ul.children-content li {
+    cursor: default;
+    font-size: 14px;
+    margin: 10px 0 10px 15px;
+    list-style-type: disc;
+}
+
+#Klein #practice-area-sidebar li:first-child a {
+    padding-top: 5px;
+}
+
+#Klein #practice-area-sidebar li a {
+    display: block;
+    padding: 2px 30px;
+    vertical-align: text-top;
+    color: #4e7289;
+    font-family: LatoWebBold;
+	background-color: rgba(136, 132, 133, .1);
+	transition: all .5s;
+}
+
+#Klein #practice-area-sidebar li a:hover {
+	color:#ffffff;
+	background-color: #4e7289;
+}
+
+#Klein #practice-area-sidebar span.handle {
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+    position: relative;
+    background-color: #336699;
+    color: #ffdd00;
+    float: right;
+    top: -5px;
+}
+
+#Klein #practice-area-sidebar li:before{
+	display:none;
+}
+
+@media(max-width:767px){
+    #Klein #practice-area-sidebar {
+        float:none;
+        margin:0 auto;
+    }
+}
+
+@media (max-width: 479px){
+	body#Klein .menu-menu-1-container ul#menu-menu-1 {
+		position: absolute;
+		max-width: 100%;
+		width: 300px;
+		left: 50%;
+		margin-left: -150px;
+	}
+}
+
+/*Consultation Widget*/
+
+#CTA {
+    padding: 20px 15px;
+}
+
+#Klein .consultation-text {
+    font-size: 30px;
+    font-family: LatoWebThin;
+    width: 250px;
+    margin: 30px auto 0;
+}
+
+#Klein[class*='pa-inner-page'] .consultation-text, #Klein[class*='single'] .consultation-text, #Klein[class*='archive'] .consultation-text, .img-wrapper {
+    width: 350px;
+    float: right;
+    max-width: 75%;
+}
+
+.img-wrapper {
+    clear: both;
+}
+
+.img-wrapper img, img.aligncenter.size-full.wp-image-4097{
+    max-width: 100%;
+    height: auto;
+    cursor:pointer;
+}
+
+@media(max-width:1159px) and (min-width:768px){
+    #Klein #plm-slider, .img-wrapper, #Klein[class*='pa-inner-page'] .consultation-text, #Klein[class*='single'] .consultation-text, #Klein[class*='archive'] .consultation-text, #Klein #practice-area-sidebar{
+        max-width:100%;
+    }
+}
+
+/*Practice Area Template Styles*/
+
+#Klein[class*='pa-inner-page'] h1 strong, #Klein[class*='pa-inner-page'] h1 {
+    font-family: LatoWebThin;
+    text-transform: uppercase;
+}
+
+#plm-slider {
+    background-image: url(/files/2017/12/gradient-box-e1513377710472.png);
+    min-height: 500px;
+    clear: both;
+    width: 350px;
+    float: right;
+    margin: 75px 0 20px;
+    max-width: 75%;
+    position: relative;
+    background-size: cover;
+}
+
+#Klein #plm-slider p {
+    text-align: center;
+    color: white;
+    font-family: LatoWeb;
+    font-size: 18px;
+    padding: 20px 15px 0;
+    font-weight:bold;
+    text-shadow: 1px 1px 1px #222;
+}
+
+@media(max-width:767px){
+    #Klein[class*='pa-inner-page'] .consultation-text, #Klein[class*='single'] .consultation-text, #Klein[class*='archive'] .consultation-text, .img-wrapper, #plm-slider{
+        float:none;
+        margin:0 auto;
+    }
+
+    #plm-slider {
+        margin-top:50px;
+    }
+}
+
+
+/*Form Modal*/
+
+#Klein #formModal input#gform_submit_button_1 {
+    font-size: 20px;
+    text-transform: uppercase;
+    padding: 8px 15px 6px;
+    background-color: #1c4359;
+    color: white;
+    width: 200px;
+    float: right;
+    margin: -45px 5px 0 0;
+}
+
+#Klein #formModal #modalTitle {
+    padding: 0 15px;
+    font-family: LatoWeb;
+    font-weight: 500;
+    color: white;
+}
+
+#Klein .modal-header {
+    background-color: #1c4359;
+}
+
+#Klein .modal-header button.close {
+    color: white;
+    opacity: 1;
+}
+
+@media(max-width:599px){
+    #Klein #formModal input#gform_submit_button_1 {
+        float:none;
+        margin:0 auto;
+    }
+}
+
+/*Search Page*/
+
+.blog-main #searchsubmit {
+    background: none;
+    border: none;
+    background-color: #1c4359;
+    color: white;
+    padding: 4px 10px;
+}
