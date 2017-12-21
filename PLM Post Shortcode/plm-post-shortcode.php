@@ -78,6 +78,10 @@ function tamatebako_google_fonts_url( $fonts, $subsets = array() ){
     return '';
 }
 
+/**
+ * Get dynamic array of Google Fonts form Google Fonts API
+ * --STILL IN DEVELOPMENT--
+ */
 function get_google_fonts(){
 	$access_key="AIzaSyCexm2cZ2OochGBJVH6nWzZezM6XZQn-Zg";
 	$url ='https://www.googleapis.com/webfonts/v1/webfonts?key=' . $access_key;
@@ -95,6 +99,10 @@ function get_google_fonts(){
 
 }
 
+/**
+ * Enqueue front facing CSS
+ * --STILL IN DEVELOPMENT--
+ */
 function plm_blog_enqueue_styles() {
     wp_register_style('plm-blog-font-css', '/wp-content/plugins/plm-post-shortcode/public/css/front.css' );
 	wp_enqueue_style('PLM Blog Css', '/wp-content/plugins/plm-post-shortcode/public/css/front.css'); 
@@ -102,6 +110,10 @@ function plm_blog_enqueue_styles() {
 
 add_action( 'wp_enqueue_scripts', 'plm_blog_enqueue_styles' );
 
+
+/**
+ * Returns array of categories from blog
+ */
 function get_blog_categories(){
 	$categories = get_categories(
 		array(
@@ -119,9 +131,13 @@ function get_blog_categories(){
    return $category_Array;
 }
 
-
+//This action runs the custom shortcode GUI function before Visual Composer initializes
 add_action( 'vc_before_init', 'plm_blog_integrateWithVC' );
 
+
+/**
+ * This function maps all of the custom GUI fields to the custom VC shortcode
+ */
 function plm_blog_integrateWithVC() {
 	
    $optionCategories=get_blog_categories();
@@ -470,11 +486,16 @@ function plm_blog_integrateWithVC() {
 	
 }
 
+//Not sure what this does, but it was in the documentation
 class WPBakeryShortCode_plm_blog extends WPBakeryShortCode {
 }
 
+//This filter officially registers the [plm_blog] shortcode with Visual composer
 add_filter( 'vc_grid_item_shortcodes', 'plm_blog_add_grid_shortcodes' );
 
+/**
+ * Officially registers the [plm_blog] shortcode with Visual composer
+ */
 function plm_blog_add_grid_shortcodes( $shortcodes ) {
    $shortcodes['plm_blog'] = array(
      'name' => __( 'PLM Blog', 'plmorg' ),
@@ -486,6 +507,9 @@ function plm_blog_add_grid_shortcodes( $shortcodes ) {
    return $shortcodes;
 }
 
+/**
+ * Proper function for hooking plugin activation/deactivation
+ */
 function plm_post_shortcode_flush(){
     // clear the permalinks after the post type has been registered
     flush_rewrite_rules();
@@ -494,12 +518,17 @@ function plm_post_shortcode_flush(){
 register_activation_hook( __FILE__, 'plm_post_shortcode_flush' );
 register_deactivation_hook( __FILE__, 'plm_post_shortcode_flush' );
 
-
-function plm_post_shortcode( $atts, $content = null){
+/**
+ * Function that actually parses shortcode and blog HTML
+ * @param atts {{ array }} shortcode attributes present in shortcode
+ */
+function plm_post_shortcode( $atts){
 	global $post;
+
 
 	$css = '';
 
+	//Default attribute values are set here.  If others are present in the shortcode, they will be used instead
 	$atts = shortcode_atts(
 		array(
 			'number' => '3',
@@ -546,7 +575,7 @@ function plm_post_shortcode( $atts, $content = null){
 		), $atts, 'plm_blog' 
 	);
 
-	//parse out inline style
+	//parse out inline style from Visual Composer Design Options tab
 	$leftBracket=stripos($atts['css'],"{");
 	$atts['css']=substr($atts['css'],$leftBracket + 1);
 	$atts['css']=rtrim($atts['css'],"}");
@@ -560,9 +589,11 @@ function plm_post_shortcode( $atts, $content = null){
 	//echo "<script>console.log('".$imageHeight."')</script>";
 	$imageHeight=(int) preg_replace('/\D/', '', $imageHeight);
 	
+
+	//This code is for the 'load more posts' / pagination component
 	if($atts['load_more_posts_number'] != '' || $atts['pagination']=='Yes'){
 		$postsPerPage=$atts['number'];
-		$atts['number']="-1";
+		$atts['number']="-1";//we set number of posts to unlimited to have all posts on one page
 		
 		//Can't have pagination and load more posts at same time
 		if($atts['pagination']=='Yes'){
@@ -570,6 +601,7 @@ function plm_post_shortcode( $atts, $content = null){
 		}
 	}
 	
+	//Set args for WP_Query
 	$args = array(
 		// Arguments for your query.
 		'post_type' => $atts['post_type'],
@@ -587,14 +619,14 @@ function plm_post_shortcode( $atts, $content = null){
 	if ( $query->have_posts() ) {
 		
 		//Custom Pagination
-		$postCount = $query->found_posts;
+		$postCount = $query->found_posts;//number of found posts
 		
-		$numPages = intval($postCount / $postsPerPage);
+		$numPages = intval($postCount / $postsPerPage);//number of pages
 		$modulus = fmod($postCount,$postsPerPage);
 		$onPage=1;
 		$postNum=1;
 		
-		if($modulus != 0){
+		if($modulus != 0){//if this is greater than 0 we add a page for leftover posts
 			$numPages += 1; 
 		}
 		
@@ -605,7 +637,7 @@ function plm_post_shortcode( $atts, $content = null){
 		else{
 			$atts['blog_post_column_size']=array(4,8);
 		}
-		
+		//blog box shadow
 		if($atts['blog_shadow']=="true"){
 			$blogHTML="<div id='dummy-blog-container'  style='background-color:" . $atts['b_color'] . ";" . $atts['css'] . ";width:" . $atts['blog_width'] .";box-shadow: 2px 2px 5px #999;'>
 				<div class='container-fluid'>";
@@ -613,7 +645,7 @@ function plm_post_shortcode( $atts, $content = null){
 			$blogHTML="<div id='dummy-blog-container'  style='background-color:" . $atts['b_color'] . ";" . $atts['css'] . ";width:" . $atts['blog_width'] .";'>
 				<div class='container-fluid'>";
 		}
-		
+		//Show title of Blog
 		if($atts['show_blog_title'] == "Yes"){
 			$blogHTML.="<div class='row heading'>
 						<div class='col-md-12'>
@@ -621,39 +653,39 @@ function plm_post_shortcode( $atts, $content = null){
 						</div>
 					</div>";
 		}
-		
+		//We're not showing featured images
 		if($atts['featured_image'] == "No"){
 			$blogHTML.="<div class='row inner'>
 						<div class='col-md-12'>";
 		}
-			
-			
+				
 	
 		// Start looping over the query results.
 		while ( $query->have_posts() ) {
 			$query->the_post();
 			
 			
-			
+			//no read more functionality
 			if($atts['read_more'] == "No"){
 				$atts['read_more_text'] = " ";		
 			}
-		
+				
 			if($atts['pagination']=='Yes'){
 				if($postNum > $postsPerPage){
 					$postsPerPage+=$postsPerPage/$onPage;
 					$onPage++;					
 				}
-				
+
+				//Add data- hooks to html for js	
 				$blogHTML.="<div class='dummy-post' data-post= " . $postNum . " data-page=" . $onPage . ">";
 				$postNum++;
 			}else{
 				$blogHTML.="<div class='dummy-post'>";
 			}
-			
+			//this is if the user wants featured images displayed
 			if($atts['featured_image'] == "Yes"){
 				$featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); 
-				
+				//default featured image code
 				if ($atts['default_featured_image']==''){
 					$atts['default_featured_image']="/wp-content/plugins/plm-post-shortcode/public/images/default-placeholder-300x300.png";
 				}
@@ -667,9 +699,9 @@ function plm_post_shortcode( $atts, $content = null){
 							<script>function defaultImage(img){img.src='" . $atts['default_featured_image'] . "'}</script>
 							<div class='col-md-" . $atts['blog_post_column_size'][1] . "'>";	
 			}
-			
+			//post link
 			$blogHTML.="<a href='" . get_permalink() . "'>";
-			
+			//Display Date position according to user selection
 			if($atts['date_position']=="Before Post Title"){
 				$blogHTML.="
 							<div style='color:" . $atts['date_color' ] . ";font-size:". $atts['date_font_size' ] .";' class='date'>" . $atts['before_date_text' ] . get_the_date() . "</div>
@@ -681,11 +713,12 @@ function plm_post_shortcode( $atts, $content = null){
 							<div style='color:" . $atts['date_color' ] . ";font-size:". $atts['date_font_size' ] .";margin-bottom:15px;' class='date'>" . $atts['before_date_text']  . get_the_date() . "</div>
 					</a>";
 			}
-
+			//we're showing the post content
 			if ($atts['show_post_content'] == "Yes"){
 				$blogHTML.=
 						"<div style='color:" . $atts['post_content_color'] . ";font-size:". $atts['post_content_font_size' ] .";' class='post-content'>" . get_the_content() . "<a class='full-post' href='". get_permalink() ."'>" . $atts['read_more_text'] . "</a></div>
 				</div>";
+			//we're showing the excerpt instead
 			}else if ($atts['show_excerpt'] == "Yes"){
 				
 				$blogHTML.=
@@ -694,7 +727,7 @@ function plm_post_shortcode( $atts, $content = null){
 			}else{
 				$blogHTML.="</div>";
 			}
-			
+			//Ending HTML for featured image
 			if($atts['featured_image'] == "Yes"){
 				$blogHTML.="</div></div>";
 			}
@@ -705,6 +738,7 @@ function plm_post_shortcode( $atts, $content = null){
 		wp_reset_postdata();
 		//wp_reset_query();
 		
+		//based on featured image code
 		if($atts['featured_image'] == "Yes"){
 			$blogHTML.="	
 					</div>
@@ -720,7 +754,7 @@ function plm_post_shortcode( $atts, $content = null){
 		}
 		
 		if($atts['pagination']=='Yes'){
-			
+			//This is for numbered page functionality
 			if($atts['pagination_style']=='Numbered'){
 				$blogHTML.='<div class="pagination numbered" data-onpage="1">
 								<div class="page-prev">&lt;&lt;</div>
@@ -770,6 +804,7 @@ function plm_post_shortcode( $atts, $content = null){
 							</script>
 							';	
 			}else{
+				//This is for 'Prev Next Page functionality'
 				$blogHTML.='<div class="pagination" data-onpage="1"><div class="page-prev">Previous Page</div><div class="page-next">Next Page</div></div>';
 			}
 					$blogHTML.='<script type="text/javascript">
@@ -796,7 +831,7 @@ function plm_post_shortcode( $atts, $content = null){
 												lastPage=$(this).attr("data-page");
 											}
 										);
-										
+										//Handles pagination click
 										$(".pagination > div").click(
 											function(){
 												var onPage=$(".pagination").attr("data-onpage");
@@ -805,12 +840,13 @@ function plm_post_shortcode( $atts, $content = null){
 													$(".pagination").attr("data-onpage", ++onPage);
 													$("[data-page]").removeClass("currentPage").slideUp("fast");
 													$("[data-page" + "=" + onPage + "]").addClass("currentPage").slideDown("fast");
+													//hide prev button on first page
 													if(onPage > 1){
 														$(".page-prev").css("display","inline-block");
 													}else{
 														$(".page-prev").css("display","none");
 													}
-													
+													//Hide next button if on last page
 													if(onPage == lastPage){
 														$(".page-next").css("display","none");
 													}else{
@@ -820,12 +856,13 @@ function plm_post_shortcode( $atts, $content = null){
 													$(".pagination").attr("data-onpage", --onPage);
 													$("[data-page]").removeClass("currentPage").slideUp("fast");
 													$("[data-page" + "=" + onPage + "]").addClass("currentPage").slideDown("fast");
+													//hide prev button on first page
 													if(onPage > 1){
 														$(".page-prev").css("display","inline-block");
 													}else{
 														$(".page-prev").css("display","none");
 													}
-													
+													//Hide next button if on last page
 													if(onPage == lastPage){
 														$(".page-next").css("display","none");
 													}else{
@@ -843,7 +880,7 @@ function plm_post_shortcode( $atts, $content = null){
 							</script>';
 			;
 		}
-		
+		//This is for the load more posts button
 		if($atts['load_more_posts']=='Yes'){
 				$currentElems=array();
 			//create array for current elements
@@ -861,6 +898,7 @@ function plm_post_shortcode( $atts, $content = null){
     							$(document).ready(
 									function(){
 										var firstPress=true;
+										//only show posts from first set of posts
 										$(".dummy-post:nth-child(n+'. $atts['load_more_posts_number'] .')").slideUp();
 										$(".load-more").click(
 											function(){
@@ -902,7 +940,8 @@ function plm_post_shortcode( $atts, $content = null){
 		$excerpt = preg_replace('`\[[^\]]*\]`','',$excerpt);
 		return $excerpt;
     }
-	
+
+//adds shortcode to Wordpress	
 add_shortcode( 'plm_blog', 'plm_post_shortcode' );
 
 ?>
