@@ -101,7 +101,7 @@ function get_google_fonts(){
 
 /**
  * Enqueue front facing CSS
- * --STILL IN DEVELOPMENT--
+ * 
  */
 function plm_blog_enqueue_styles() {
     wp_register_style('plm-blog-font-css', '/wp-content/plugins/plm-post-shortcode/public/css/front.css' );
